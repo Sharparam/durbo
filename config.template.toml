@@ -1,0 +1,13 @@
+[facebook.user]
+email = "test@example.com"
+password = "hunter2"
+
+[facebook.group]
+id = "123456"
+
+[telegram.user]
+api_id = "123456"
+api_hash = "123abc"
+
+[telegram.group]
+id = "123456"
