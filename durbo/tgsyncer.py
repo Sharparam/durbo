@@ -2,7 +2,7 @@ import logging
 
 from inspect import isawaitable
 
-from telethon import TelegramClient, events
+from telethon import TelegramClient, events, tl
 
 
 class TgSyncer:
@@ -46,9 +46,9 @@ class TgSyncer:
     def set_simple_callback(self, callback: callable) -> None:
         self._simple_callback = callback
 
-    async def send_text(self, text: str) -> None:
+    async def send_text(self, text: str, reply_to=None) -> tl.types.Message:
         self._log.info('Sending %s to %s', text, self._group_id)
-        await self._client.send_message(self._group_id, text)
+        return await self._client.send_message(self._group_id, text, reply_to=reply_to)
 
     async def _on_newmessage(self, event: events.NewMessage.Event) -> None:
         message = event.message
@@ -71,6 +71,6 @@ class TgSyncer:
 
         if self._simple_callback:
             cb = self._simple_callback
-            r = cb(name, text)
+            r = cb(message)
             if isawaitable(r):
                 await r
