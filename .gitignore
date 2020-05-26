@@ -360,3 +360,6 @@ config.toml
 
 # Ignore Telethon .session files
 *.session
+
+# Ignore SQLite databases
+*.db
