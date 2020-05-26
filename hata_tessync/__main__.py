@@ -9,8 +9,10 @@ from .config.logging import setup_logging
 
 # import code; code.interact(local=dict(globals(), **locals()))
 
+log_name = 'hata_tessync' if __name__ == '__main__' else __name__
+
 setup_logging()
-log = logging.getLogger(__name__)
+log = logging.getLogger(log_name)
 
 config = toml.load('config.toml')
 tgconf = config['telegram']
