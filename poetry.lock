@@ -264,6 +264,14 @@ version = "0.8.0"
 
 [[package]]
 category = "main"
+description = "a little orm"
+name = "peewee"
+optional = false
+python-versions = "*"
+version = "3.13.3"
+
+[[package]]
+category = "main"
 description = "Python Imaging Library (Fork)"
 name = "pillow"
 optional = false
@@ -477,7 +485,7 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [metadata]
-content-hash = "71721f836b5c8fa41205ac5f5f852e2aed4e846867b3fb821111b578eff5725d"
+content-hash = "377f93553777dab62e57c7aad250240b1c39eafc320d8cb9a1bf3e0ad9d3d80b"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -656,6 +664,9 @@ paho-mqtt = [
 pathspec = [
     {file = "pathspec-0.8.0-py2.py3-none-any.whl", hash = "sha256:7d91249d21749788d07a2d0f94147accd8f845507400749ea19c1ec9054a12b0"},
     {file = "pathspec-0.8.0.tar.gz", hash = "sha256:da45173eb3a6f2a5a487efba21f050af2b41948be6ab52b6a1e3ff22bb8b7061"},
+]
+peewee = [
+    {file = "peewee-3.13.3.tar.gz", hash = "sha256:1269a9736865512bd4056298003aab190957afe07d2616cf22eaf56cb6398369"},
 ]
 pillow = [
     {file = "Pillow-7.1.2-cp35-cp35m-macosx_10_10_intel.whl", hash = "sha256:ae2b270f9a0b8822b98655cb3a59cdb1bd54a34807c6c56b76dd2e786c3b7db3"},

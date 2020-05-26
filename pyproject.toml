@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "hata-tessync"
+name = "durbo"
 version = "0.1.0"
 description = "Syncs the Hata chat between Facebook Messenger and Telegram"
 license = "MPL-2.0"
 authors = ["Adam Hellberg <sharparam@sharparam.com>"]
 readme = "README.md"
-homepage = "https://github.com/Sharparam/hata-tessync"
-repository = "https://github.com/Sharparam/hata-tessync"
+homepage = "https://github.com/Sharparam/durbo"
+repository = "https://github.com/Sharparam/durbo"
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -17,6 +17,7 @@ aiohttp = "^3.6.2"
 hachoir = "^3.1.1"
 fbchat = "^1.9.6"
 toml = "^0.10.1"
+peewee = "^3.13.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

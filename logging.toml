@@ -14,7 +14,7 @@ formatter = "detailed"
 level = "DEBUG"
 handlers = ["console"]
 
-[loggers.hata_tessync]
+[loggers.durbo]
 level = "DEBUG"
 
 [loggers.telethon]

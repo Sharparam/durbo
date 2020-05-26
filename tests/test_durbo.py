@@ -1,4 +1,4 @@
-from hata_tessync import __version__
+from durbo import __version__
 
 
 def test_version():
