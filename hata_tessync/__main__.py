@@ -21,6 +21,18 @@ fbconf = config['facebook']
 tg = TgSyncer(tgconf)
 fb = FbSyncer(fbconf)
 
+
+def tg_callback(sender, message):
+    fb.send_text(f"<{sender}>\n{message}")
+
+
+async def fb_callback(sender, message):
+    log.info('running fb_callback')
+    await tg.send_text(f"<**{sender}**>\n{message}")
+
+tg.set_simple_callback(tg_callback)
+fb.set_simple_callback(fb_callback)
+
 loop = asyncio.get_event_loop()
 
 

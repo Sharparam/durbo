@@ -8,7 +8,7 @@ format = "%(asctime)s - %(name)s - %(lineno)d - %(levelname)s - %(message)s"
 
 [handlers.console]
 class = "logging.StreamHandler"
-formatter = "simple"
+formatter = "detailed"
 
 [root]
 level = "DEBUG"

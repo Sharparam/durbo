@@ -1,5 +1,7 @@
 import logging
 
+from inspect import isawaitable
+
 from telethon import TelegramClient, events
 
 
@@ -41,6 +43,13 @@ class TgSyncer:
     async def run_until_disconnected(self) -> None:
         await self._client.run_until_disconnected()
 
+    def set_simple_callback(self, callback: callable) -> None:
+        self._simple_callback = callback
+
+    async def send_text(self, text: str) -> None:
+        self._log.info('Sending %s to %s', text, self._group_id)
+        await self._client.send_message(self._group_id, text)
+
     async def _on_newmessage(self, event: events.NewMessage.Event) -> None:
         message = event.message
         sender = message.sender
@@ -52,10 +61,16 @@ class TgSyncer:
 
         name = sender.username
 
-        if not name or name == '':
+        if not name:
             name = f"{sender.first_name} {sender.last_name}".strip()
 
-        if not name or name == '':
+        if not name:
             name = sender.id
 
-        self._log.info('TG [%s] <%s> %s', event.chat_id, name, message.raw_text)
+        self._log.info('TG [%s] <%s> %s', event.chat_id, name, text)
+
+        if self._simple_callback:
+            cb = self._simple_callback
+            r = cb(name, text)
+            if isawaitable(r):
+                await r
