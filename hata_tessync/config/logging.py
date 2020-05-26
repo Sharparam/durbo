@@ -2,10 +2,12 @@ import logging
 import logging.config
 import toml
 
+from typing import Union
+
 DEFAULT_LOG_CONFIG_PATH = 'logging.toml'
 
 
-def setup_logging(config=None):
+def setup_logging(config: Union[str, dict] = None) -> None:
     if not config:
         config = DEFAULT_LOG_CONFIG_PATH
 

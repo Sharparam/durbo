@@ -1,8 +1,8 @@
 import toml
 
-from fbchat import Client as FbClient
+# TODO: ?
 
 
 class Syncer:
-    def __init__(self, config_path):
+    def __init__(self, config_path: str) -> None:
         self.config = toml.load(config_path)

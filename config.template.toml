@@ -1,3 +1,6 @@
+[facebook]
+master_id = "123456"
+
 [facebook.user]
 email = "test@example.com"
 password = "hunter2"
@@ -5,9 +8,14 @@ password = "hunter2"
 [facebook.group]
 id = "123456"
 
+[telegram]
+master_id = 123456
+
 [telegram.user]
-api_id = "123456"
-api_hash = "123abc"
+session = "example"
+api_id = "1234"
+api_hash = "abc123"
+bot_token = "12345:abcdef12345"
 
 [telegram.group]
-id = "123456"
+id = -123456

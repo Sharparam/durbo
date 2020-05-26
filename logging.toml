@@ -16,3 +16,9 @@ handlers = ["console"]
 
 [loggers.hata_tessync]
 level = "DEBUG"
+
+[loggers.telethon]
+level = "WARNING"
+
+[loggers.paho]
+level = "WARNING"
