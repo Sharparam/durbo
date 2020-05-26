@@ -11,10 +11,10 @@ class FbSyncer(FbClient):
         self._loop = loop or asyncio.get_event_loop()
         self._master_id = config['master_id']
         user = config['user']
-        self._email = user['email']
-        self._password = user['password']
+        email = user['email']
+        password = user['password']
         self._log.debug('Calling base __init__ with user details')
-        super().__init__(self._email, self._password)
+        super().__init__(email, password)
         group = config['group']
         self._group_id = group['id']
 
