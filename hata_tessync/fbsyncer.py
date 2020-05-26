@@ -2,7 +2,9 @@ import asyncio
 import logging
 
 from fbchat import Client as FbClient
-from fbchat.models import Message
+from fbchat.models import Message, ThreadType
+
+from .utils import memoize
 
 
 class FbSyncer(FbClient):
@@ -40,6 +42,11 @@ class FbSyncer(FbClient):
     async def run_until_disconnected(self) -> None:
         await self._loop.run_in_executor(None, self.listen)
 
+    @memoize
+    def get_thread_type(self, thread_id: str) -> ThreadType:
+        thread = self.fetchThreadInfo(thread_id)[thread_id]
+        return thread.type
+
     def onMessage(self, mid, author_id, message_object, thread_id, thread_type, ts, metadata, msg, **kwargs):
         if thread_id != self._group_id:
             self._log.debug('Message not in configured group, ignoring')
@@ -51,12 +58,14 @@ class FbSyncer(FbClient):
             self._log.debug('Not processing message from self')
             return
 
+        user = self.fetchUserInfo(author_id)[author_id]
+        author_name = user.name
         text = message_object.text.strip()
 
         if text == '':
             return
 
-        self._log.info('FB [%s] <%s> %s', thread_id, author_id, text)
+        self._log.info('FB [%s] <%s> %s', thread_id, author_name, text)
 
         if text == '/die' and author_id == self._master_id:
             self._log.info('Master requested death, complying')
