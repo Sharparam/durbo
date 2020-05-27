@@ -14,8 +14,9 @@ RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         build-essential \
         curl \
+        sqlite3 \
+        libsqlite3-dev \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
-    # && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -u \
     && pip install "poetry==$POETRY_VERSION" \
     && poetry --version
 
@@ -25,11 +26,8 @@ COPY ./pyproject.toml ./poetry.lock /app/
 RUN poetry install --no-dev --no-interaction --no-ansi \
     && rm -rf "$POETRY_CACHE_DIR"
 
+COPY . /app
 COPY docker-entrypoint.sh ./
-RUN chmod +x 'docker-entrypoint.sh' \
-    && groupadd -r durbo && useradd -d /app -r -g durbo durbo \
-    && chown durbo:durbo -R /app
-
-USER durbo
+RUN chmod +x 'docker-entrypoint.sh'
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
