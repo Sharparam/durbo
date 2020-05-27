@@ -4,7 +4,6 @@ import sys
 import toml
 
 from tempfile import gettempdir
-from pprint import pprint
 
 from telethon import tl
 
@@ -23,7 +22,7 @@ log_name = "durbo" if __name__ == "__main__" else __name__
 setup_logging()
 log = logging.getLogger(log_name)
 
-config = toml.load("config.toml")
+config = toml.load("data/config.toml")
 dbname = config["database"]["name"]
 tgconf = config["telegram"]
 fbconf = config["facebook"]
