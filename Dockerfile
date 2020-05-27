@@ -15,7 +15,8 @@ RUN apt-get update \
         build-essential \
         curl \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
-    && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -u \
+    # && curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -u \
+    && pip install "poetry==$POETRY_VERSION" \
     && poetry --version
 
 WORKDIR /app
