@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  bot:
+    build: .
+    restart: always
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
