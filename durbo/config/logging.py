@@ -4,7 +4,7 @@ import toml
 
 from typing import Union
 
-DEFAULT_LOG_CONFIG_PATH = 'logging.toml'
+DEFAULT_LOG_CONFIG_PATH = "logging.toml"
 
 
 def setup_logging(config: Union[str, dict] = None) -> None:
@@ -14,6 +14,6 @@ def setup_logging(config: Union[str, dict] = None) -> None:
     if not isinstance(config, dict):
         config = toml.load(config)
 
-    config = config.get('logging', config)
+    config = config.get("logging", config)
 
     logging.config.dictConfig(config)

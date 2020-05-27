@@ -25,9 +25,9 @@ def download_file(url: str, ext: str = None) -> str:
     if ext:
         suffix = f".{ext}"
 
-    file, path = mkstemp(suffix, 'durbo_')
+    file, path = mkstemp(suffix, "durbo_")
 
-    with urlopen(url) as response, open(path, 'wb') as out_file:
+    with urlopen(url) as response, open(path, "wb") as out_file:
         shutil.copyfileobj(response, out_file)
 
     return path

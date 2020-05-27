@@ -12,6 +12,4 @@ class MessageData(BaseModel):
     fb_thread_id = CharField(index=True)
 
     class Meta:
-        indexes = (
-            (('tg_message_id', 'fb_message_id'), True),
-        )
+        indexes = ((("tg_message_id", "fb_message_id"), True),)

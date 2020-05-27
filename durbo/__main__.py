@@ -67,9 +67,9 @@ async def tg_callback(message: tl.types.Message):
     media_path = None
 
     if (message.photo or message.document) and not message.sticker:
-        log.info('Message has a file attached, downloading it')
+        log.info("Message has a file attached, downloading it")
         media_path = await message.download_media(gettempdir())
-        log.info('Message media downloaded to %s', media_path)
+        log.info("Message media downloaded to %s", media_path)
 
     sent_message = fb.send_text(f"<{sender_name}>\n{text}", reply_to_id, media_path)
 
@@ -102,7 +102,9 @@ async def fb_callback(message: FbMessageData):
 
     log.debug("Proxying message to telegram")
     sent_messages = await tg.send_text(
-        f"<**{message.author_name}**>\n{message.message_object.text or ''}", reply_to, message.file_paths
+        f"<**{message.author_name}**>\n{message.message_object.text or ''}",
+        reply_to,
+        message.file_paths,
     )
 
     tg_sender_id = await tg.get_my_id()
@@ -138,9 +140,9 @@ async def _amain() -> None:
         )
 
         log.debug("Sync tasks finished")
-    except: # noqa: E722
+    except:  # noqa: E722
         info = sys.exc_info()[0]
-        log.critical('Unexpected error', exc_info=info)
+        log.critical("Unexpected error", exc_info=info)
         raise
     finally:
         await tg.stop()
@@ -154,9 +156,9 @@ def main() -> None:
         log.info("User pressed Ctrl-C, exiting")
         loop.run_until_complete(tg.stop())
         fb.stop()
-    except: # noqa: E722
+    except:  # noqa: E722
         info = sys.exc_info()[0]
-        log.critical('Unexpected error', exc_info=info)
+        log.critical("Unexpected error", exc_info=info)
         raise
 
 
