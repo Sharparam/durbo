@@ -43,7 +43,8 @@ TG_DICE_STUFF = {
     },
     "values": {
         "🎯": {
-            1: "Miss!"
+            1: "Miss!",
+            6: "Bullseye!"
         },
         "🏀": {
             1: "Miss!",
