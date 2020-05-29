@@ -34,12 +34,33 @@ database.create_tables([MessageData])
 tg = TgSyncer(tgconf)
 fb = FbSyncer(fbconf)
 
+TG_DICE_STUFF = {
+    "format": "{name} {action} a {type}: {value}",
+    "actions": {
+        "🎲": "rolled",
+        "🎯": "threw",
+        "🏀": "threw"
+    },
+    "values": {
+        "🎯": {
+            1: "Miss!"
+        },
+        "🏀": {
+            1: "Miss!",
+            2: "Miss!",
+            3: "Stuck!",
+            4: "Score, barely!",
+            5: "Score!"
+        }
+    }
+}
+
 
 async def tg_callback(message: tl.types.Message):
     sender = message.sender
     sender_id = sender.id
     sender_name = (
-        f"{sender.first_name} {sender.last_name}".strip()
+        f"{sender.first_name or ''} {sender.last_name or ''}".strip()
         or sender.username
         or sender_id
     )
@@ -52,6 +73,16 @@ async def tg_callback(message: tl.types.Message):
         text = "[Telegram game, please go to the Telegram group to interact]"
     elif message.sticker:
         text = "[webp image unsupported by Facebook, please go to the Telegram group to view]"
+    elif message.dice:
+        emoji = message.dice.emoji
+        value = message.dice.value
+        template = TG_DICE_STUFF["format"]
+        action = TG_DICE_STUFF["actions"].get(emoji, "used")
+        value = message.dice.emoji
+        value_map = TG_DICE_STUFF["values"].get(emoji)
+        if value_map and value in value_map:
+            value = value_map[value]
+        text = template.format(name=sender_name, action=action, type=emoji, value=value)
 
     reply_to_id = None
 
