@@ -74,7 +74,7 @@ async def tg_callback(message: tl.types.Message):
     elif message.sticker:
         text = "[webp image unsupported by Facebook, please go to the Telegram group to view]"
     elif message.dice:
-        emoji = message.dice.emoji
+        emoji = message.dice.emoticon
         value = message.dice.value
         template = TG_DICE_STUFF["format"]
         action = TG_DICE_STUFF["actions"].get(emoji, "used")
