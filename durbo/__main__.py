@@ -78,7 +78,6 @@ async def tg_callback(message: tl.types.Message):
         value = message.dice.value
         template = TG_DICE_STUFF["format"]
         action = TG_DICE_STUFF["actions"].get(emoji, "used")
-        value = message.dice.emoji
         value_map = TG_DICE_STUFF["values"].get(emoji)
         if value_map and value in value_map:
             value = value_map[value]
