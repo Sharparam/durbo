@@ -10,7 +10,7 @@ repository = "https://github.com/Sharparam/durbo"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-telethon = "^1.13.0"
+telethon = "^1.14.0"
 cryptg = "^0.2.post1"
 pillow = "^7.1.2"
 aiohttp = "^3.6.2"
